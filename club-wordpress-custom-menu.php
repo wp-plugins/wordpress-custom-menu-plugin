@@ -2,10 +2,15 @@
 /*
 Plugin Name: Club Wordpress Custom Menu
 Plugin URI: http://www.clubwordpress.com/club-wordpress-custom-menu/
-Description: Create and display a custom menu. Use <em>Manage->Custom Menu</em> to set options. Use <em>&lt;?php cwcm_output() ?&gt;</em> to output your custom menu.
+Description: Create and display a custom menu. Use <em>Manage->Custom Menu</em> to set options. Use <em>&lt;?php custommenu_output() ?&gt;</em> to output your custom menu.
 Author: Dominic Foster
-Version: 1.1.0
+Version: 1.1.1
 Author URI: http://www.clubwordpress.com/
+*/
+
+/*
+V 1.1.1 - Fixed some minor bugs.
+
 */
 
 /*
@@ -235,9 +240,8 @@ add_action('admin_menu', 'cw_custom_menu_admin');
 //function to output the custom menu to WP
 function custommenu_output() {
 	global $wpdb;
-	$yahoo = new yahoo;
 
-	$sql = "select * from " . CWCM_TABLE . " where linkVisible='yes'";
+	$sql = "select * from " . CWCM_TABLE . " where cwcm_item_visible='yes'";
 
 	$results = $wpdb->get_results($sql);
 
